@@ -15,7 +15,5 @@ CI.run do
   step 'Tests: RSpec', 'bin/rspec spec'
   step 'Tests: Seeds', 'env RAILS_ENV=test bin/rails db:seed:replant'
 
-  if Dir.glob('test/system/**/*_test.rb').any?
-    step 'Tests: System', 'RAILS_ENV=test bin/rails test:system'
-  end
+  step 'Tests: System', 'RAILS_ENV=test bin/rails test:system' if Dir.glob('test/system/**/*_test.rb').any?
 end
