@@ -15,6 +15,7 @@ gem 'pg_search'
 gem 'propshaft'
 gem 'puma', '>= 5.0'
 gem 'pundit'
+gem 'rack-cors'
 gem 'rails', '~> 8.1.2'
 gem 'redis'
 gem 'sidekiq'
@@ -52,3 +53,5 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
 end
+
+gem 'bcrypt', '~> 3.1'
