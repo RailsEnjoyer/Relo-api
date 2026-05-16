@@ -17,10 +17,33 @@ la = City.create!(state_id: ca.id, name: 'Los Angeles')
 austin = City.create!(state_id: tx.id, name: 'Austin')
 nyc = City.create!(state_id: ny.id, name: 'New York City')
 
-sf_mission = Neighborhood.create!(city_id: sf.id, name: 'Mission District')
-la_weho = Neighborhood.create!(city_id: la.id, name: 'West Hollywood')
-austin_downtown = Neighborhood.create!(city_id: austin.id, name: 'Downtown')
-nyc_brooklyn = Neighborhood.create!(city_id: nyc.id, name: 'Brooklyn')
+sf_mission = Neighborhood.create!(
+  city_id: sf.id, name: 'Mission District',
+  cost_of_living_index: 150,
+  walkability_score: 100,
+  crime_index: 110
+)
+la_weho = Neighborhood.create!(
+  city_id: la.id,
+  name: 'West Hollywood',
+  cost_of_living_index: 155,
+  walkability_score: 110,
+  crime_index: 110
+)
+austin_downtown = Neighborhood.create!(
+  city_id: austin.id,
+  name: 'Downtown',
+  cost_of_living_index: 100,
+  walkability_score: 150,
+  crime_index: 120
+)
+nyc_brooklyn = Neighborhood.create!(
+  city_id: nyc.id,
+  name: 'Brooklyn',
+  cost_of_living_index: 140,
+  walkability_score: 160,
+  crime_index: 155
+)
 
 plans = [
   {

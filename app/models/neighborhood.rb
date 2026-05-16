@@ -4,18 +4,19 @@
 #
 # Table name: neighborhoods
 #
-#  id                 :bigint           not null, primary key
-#  average_buy_price  :decimal(10, 2)   default(0.0), not null
-#  average_rent_price :decimal(10, 2)   default(0.0), not null
-#  crime_index        :integer
-#  description        :text
-#  name               :string           not null
-#  school_rating      :integer
-#  tags               :string           default([]), is an Array
-#  walkability_score  :integer
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  city_id            :bigint           not null
+#  id                   :bigint           not null, primary key
+#  average_buy_price    :decimal(10, 2)   default(0.0), not null
+#  average_rent_price   :decimal(10, 2)   default(0.0), not null
+#  cost_of_living_index :integer
+#  crime_index          :integer
+#  description          :text
+#  name                 :string           not null
+#  school_rating        :integer
+#  tags                 :string           default([]), is an Array
+#  walkability_score    :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  city_id              :bigint           not null
 #
 # Indexes
 #
