@@ -1,3 +1,4 @@
 # frozen_string_literal: true
 
-Rails.root.glob('db/seeds/*.rb').each { require _1 }
+require_relative 'seeds/relocation_plan_seeds'
+require_relative 'seeds/listing_seeds'

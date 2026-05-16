@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     namespace :guest_space do
-      get 'landing', to: 'guest_space/listings#index'
+      get 'landing_neighborhoods', to: 'neighborhoods#index'
     end
   end
 end
