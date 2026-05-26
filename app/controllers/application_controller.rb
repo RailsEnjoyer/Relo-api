@@ -6,4 +6,14 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   stale_when_importmap_changes
+
+  private
+
+  def error_reponse(errors:, status: :unprocessable_content, extra: nil)
+    render json: { status: 'error', errors:, extra: }, status:
+  end
+
+  def success_response(status: :ok, extra: nil)
+    render json: { status: 'success', extra: }, status:
+  end
 end

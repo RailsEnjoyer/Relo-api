@@ -37,4 +37,6 @@
 #
 class Listing < ApplicationRecord
   belongs_to :neighborhood
+
+  enum :status, { available: 0, pending: 1, rented: 2, canceled: 3 }
 end

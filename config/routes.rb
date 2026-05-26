@@ -11,5 +11,7 @@ Rails.application.routes.draw do
       get 'landing_neighborhoods', to: 'neighborhoods#index'
       get 'listings', to: 'listings#index'
     end
+
+    post 'relocation_plans', to: 'relocation_plans#create'
   end
 end
