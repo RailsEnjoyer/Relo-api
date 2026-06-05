@@ -38,8 +38,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class RelocationPlan < ApplicationRecord
-  belongs_to :neighborhood
-  belongs_to :state
-  belongs_to :city
-  belongs_to :user
+  # optional should be romoved
+
+  belongs_to :neighborhood, optional: true
+  belongs_to :state, optional: true
+  belongs_to :city, optional: true
+  belongs_to :user, optional: true
 end

@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 class RelocationPlans::DataHandler < BaseService
   def initialize(params)
-    @title = params[:title]
-    @move_date = params[:move_date]
-    @monthly_rent_budget = params[:monthly_rent_budget]
+    @params = params
   end
 
   def call
@@ -12,15 +12,22 @@ class RelocationPlans::DataHandler < BaseService
 
   private
 
-  attr_reader :title, :move_date, :monthly_rent_budget
+  attr_reader :params
 
   def validate_params
     # todo
 
     {
-      title:,
-      move_date:,
-      monthly_rent_budget:
+      title: params[:title],
+      move_date: params[:move_date],
+      monthly_rent_budget: params[:monthly_rent_budget],
+      buy_budget: params[:buy_budget],
+      description: params[:description],
+      people_count: params[:people_count],
+      priorities: params[:priorities],
+      with_animals: params[:with_animals],
+      must_haves: params[:must_haves],
+      deal_breakers: params[:deal_breakers]
     }
   end
 
