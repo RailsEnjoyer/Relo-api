@@ -2,6 +2,8 @@ en:
   errors:
     create:
       relocation_plan: Unable to create Relocation Plan, please check input or try again later.
+      user: Unable to create Profile, please check input or try again later.
   success:
     create:
       relocation_plan: Relocation plan created successfully!
+      user: Profile created successfully!
