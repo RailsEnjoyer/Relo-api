@@ -19,7 +19,7 @@
 #  raw_payload      :jsonb
 #  rent_price       :decimal(10, 2)   default(0.0)
 #  sqft             :integer
-#  status           :integer          default(0), not null
+#  status           :integer          default("available"), not null
 #  title            :string           not null
 #  url              :string
 #  created_at       :datetime         not null

@@ -19,5 +19,9 @@ class NeighborhoodsSerializer < Blueprinter::Base
     field :neighborhood_walkability_score do |e|
       e.walkability_score
     end
+
+    field :neighborhood_school_rating do |e|
+      e.school_rating
+    end
   end
 end

@@ -1,15 +1,8 @@
 # frozen_string_literal: true
 
 class V1::RelocationPlansController < ApplicationController
-  # should be removed
-  skip_before_action :verify_authenticity_token
-  allow_unauthenticated_access
-
   def create
-    data = RelocationPlans::DataHandler.call(relocation_plans_params)
-    return error_reponse(errors: data.errors) if data.failure?
-
-    service = RelocationPlans::Create.call(data.result)
+    service = RelocationPlans::Create.call(params: relocation_plan_params, user: Current.user)
     return error_reponse(errors: service.errors) if service.failure?
 
     success_response(extra: service.result)
@@ -17,7 +10,7 @@ class V1::RelocationPlansController < ApplicationController
 
   private
 
-  def relocation_plans_params
+  def relocation_plan_params
     params.expect(
       relocation_plan: [
         :title, :move_date, :monthly_rent_budget, :buy_budget, :description,

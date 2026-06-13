@@ -43,5 +43,8 @@ class RelocationPlan < ApplicationRecord
   belongs_to :neighborhood, optional: true
   belongs_to :state, optional: true
   belongs_to :city, optional: true
-  belongs_to :user, optional: true
+  belongs_to :user
+
+  validates :monthly_rent_budget, numericality: { greater_than_or_equal_to: 0 }
+  validates :buy_budget, numericality: { greater_than_or_equal_to: 0 }
 end

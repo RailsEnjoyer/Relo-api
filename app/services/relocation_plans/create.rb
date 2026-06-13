@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class RelocationPlans::Create < BaseService
-  def initialize(data)
-    @data = data
+  def initialize(params:, user:)
+    @params = params
+    @user = user
   end
 
   def call
@@ -12,20 +13,15 @@ class RelocationPlans::Create < BaseService
 
   private
 
-  attr_reader :data
+  attr_reader :params, :user
 
   def create_relocation_plan
-    relocation_plan = RelocationPlan.create(data)
-
-    return all_errors unless relocation_plan.persisted?
+    relocation_plan = RelocationPlan.create(params)
+    errors[:validation_error] = relocation_plan.errors
 
     {
       message: I18n.t('success.create.relocation_plan'),
       relocation_plan:
     }
-  end
-
-  def all_errors
-    errors[:error_create_relocation_plan] = I18n.t('errors.create.relocation_plan')
   end
 end

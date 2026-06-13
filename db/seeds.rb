@@ -2,3 +2,4 @@
 
 require_relative 'seeds/relocation_plan_seeds'
 require_relative 'seeds/listing_seeds'
+require_relative 'seeds/neighborhood_seeds'

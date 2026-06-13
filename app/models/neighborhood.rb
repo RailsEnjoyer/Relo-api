@@ -11,7 +11,7 @@
 #  crime_index          :integer
 #  description          :text
 #  name                 :string           not null
-#  school_rating        :integer
+#  school_rating        :float
 #  tags                 :string           default([]), is an Array
 #  walkability_score    :integer
 #  created_at           :datetime         not null

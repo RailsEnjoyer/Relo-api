@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     resources :users
     resource :session, only: %i[create destroy]
 
+    get 'dashboard', to: 'dashboards#index'
+
     post 'relocation_plans', to: 'relocation_plans#create'
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_16_094036) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_13_153126) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -67,7 +67,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_16_094036) do
     t.integer "crime_index"
     t.text "description"
     t.string "name", null: false
-    t.integer "school_rating"
+    t.float "school_rating"
     t.string "tags", default: [], array: true
     t.datetime "updated_at", null: false
     t.integer "walkability_score"
