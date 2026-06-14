@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     namespace :guest_space do
       get 'landing_neighborhoods', to: 'neighborhoods#index'
-      get 'listings', to: 'listings#index'
+      get 'landing_listings', to: 'listings#index'
     end
 
     resource :profile, only: %i[show update]
