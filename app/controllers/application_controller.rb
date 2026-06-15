@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   include Authentication
-  include Pagy::Backend
+  include Pagy::Method
 
   allow_browser versions: :modern
   skip_before_action :verify_authenticity_token, raise: false
@@ -17,5 +17,13 @@ class ApplicationController < ActionController::Base
 
   def success_response(status: :ok, extra: nil)
     render json: { status: 'success', extra: }, status:
+  end
+
+  def default_meta(pagy_obj)
+    {
+      current_page: pagy_obj.page,
+      total_pages: pagy_obj.pages,
+      total_count: pagy_obj.count
+    }
   end
 end

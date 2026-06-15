@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   has_many :sessions, dependent: :destroy
   has_many :relocation_plans, dependent: :destroy
+  has_many :saved_listings, dependent: :destroy
+  has_many :favorite_listings, through: :saved_listings, source: :listing
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 end

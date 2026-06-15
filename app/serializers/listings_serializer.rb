@@ -6,4 +6,8 @@ class ListingsSerializer < Blueprinter::Base
   view :guest_index do
     fields :rent_price, :bedrooms, :bathrooms, :title, :image_urls
   end
+
+  view :index do
+    fields :rent_price, :bedrooms, :bathrooms, :title, :image_urls, :status
+  end
 end

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     resource :profile, only: %i[show update]
 
     get 'listings', to: 'listings#index'
+
+    resources :saved_listings, param: :listing_id, only: %i[index create destroy]
+
     get 'dashboard', to: 'dashboards#index'
 
     post 'relocation_plans', to: 'relocation_plans#create'

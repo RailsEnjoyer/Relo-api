@@ -37,6 +37,8 @@
 #
 class Listing < ApplicationRecord
   belongs_to :neighborhood
+  has_many :saved_listings, dependent: :destroy
+  has_many :favorited_by, through: :saved_listings, source: :user
 
   enum :status, { available: 0, pending: 1, rented: 2, canceled: 3 }
 end

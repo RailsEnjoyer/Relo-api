@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_13_153126) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_15_163431) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -99,6 +99,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_13_153126) do
     t.index ["user_id"], name: "index_relocation_plans_on_user_id"
   end
 
+  create_table "saved_listings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "listing_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["listing_id"], name: "index_saved_listings_on_listing_id"
+    t.index ["user_id", "listing_id"], name: "index_saved_listings_on_user_id_and_listing_id", unique: true
+    t.index ["user_id"], name: "index_saved_listings_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "ip_address"
@@ -163,6 +173,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_13_153126) do
   add_foreign_key "relocation_plans", "neighborhoods"
   add_foreign_key "relocation_plans", "states"
   add_foreign_key "relocation_plans", "users"
+  add_foreign_key "saved_listings", "listings"
+  add_foreign_key "saved_listings", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "user_listings", "listings"
   add_foreign_key "user_listings", "relocation_plans"
