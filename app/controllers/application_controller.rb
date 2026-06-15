@@ -2,10 +2,10 @@
 
 class ApplicationController < ActionController::Base
   include Authentication
+  include Pagy::Backend
 
   allow_browser versions: :modern
   skip_before_action :verify_authenticity_token, raise: false
-
 
   stale_when_importmap_changes
 

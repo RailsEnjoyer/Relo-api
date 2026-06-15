@@ -12,10 +12,12 @@ Rails.application.routes.draw do
       get 'landing_listings', to: 'listings#index'
     end
 
-    resource :profile, only: %i[show update]
     resources :users
     resource :session, only: %i[create destroy]
 
+    resource :profile, only: %i[show update]
+
+    get 'listings', to: 'listings#index'
     get 'dashboard', to: 'dashboards#index'
 
     post 'relocation_plans', to: 'relocation_plans#create'

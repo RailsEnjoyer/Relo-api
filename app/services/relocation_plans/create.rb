@@ -16,8 +16,9 @@ class RelocationPlans::Create < BaseService
   attr_reader :params, :user
 
   def create_relocation_plan
-    relocation_plan = RelocationPlan.create(params)
-    errors[:validation_error] = relocation_plan.errors
+    relocation_plan = RelocationPlan.create(params.merge(user:))
+
+    errors[:validation_error] = relocation_plan.errors unless relocation_plan.persisted?
 
     {
       message: I18n.t('success.create.relocation_plan'),
