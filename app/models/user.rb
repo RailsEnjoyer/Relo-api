@@ -23,4 +23,10 @@ class User < ApplicationRecord
   has_many :favorite_listings, through: :saved_listings, source: :listing
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  def top_matching_favorites(plan, limit: 2)
+    favorite_listings.to_a.sort_by do |listing|
+      -Listings::MatchCalculator.call(listing:, plan:).result[:total_score]
+    end.first(limit)
+  end
 end

@@ -5,14 +5,18 @@
 # Table name: relocation_plans
 #
 #  id                  :bigint           not null, primary key
-#  buy_budget          :decimal(10, 2)   default(0.0), not null
+#  bathrooms           :integer
+#  bedrooms            :integer
+#  buy_budget          :decimal(10, 2)
 #  deal_breakers       :string           default([]), is an Array
 #  description         :text
-#  monthly_rent_budget :decimal(10, 2)   default(0.0), not null
+#  monthly_rent_budget :decimal(10, 2)
 #  move_date           :datetime
 #  must_haves          :string           default([]), is an Array
 #  people_count        :integer          default(1), not null
 #  priorities          :string           default([]), is an Array
+#  property_type       :string
+#  sqft                :integer
 #  title               :string
 #  with_animals        :boolean          default(FALSE), not null
 #  created_at          :datetime         not null
@@ -45,6 +49,6 @@ class RelocationPlan < ApplicationRecord
   belongs_to :city, optional: true
   belongs_to :user
 
-  validates :monthly_rent_budget, numericality: { greater_than_or_equal_to: 0 }
-  validates :buy_budget, numericality: { greater_than_or_equal_to: 0 }
+  validates :monthly_rent_budget, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :buy_budget, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 end
