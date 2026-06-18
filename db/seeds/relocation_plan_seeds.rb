@@ -4,7 +4,6 @@ RelocationPlan.destroy_all
 Neighborhood.destroy_all
 City.destroy_all
 State.destroy_all
-User.destroy_all
 
 default_user = User.create!(email_address: 'test@example.com', password: 'password')
 

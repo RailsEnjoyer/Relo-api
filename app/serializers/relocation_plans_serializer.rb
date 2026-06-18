@@ -2,7 +2,8 @@
 
 class RelocationPlansSerializer < Blueprinter::Base
   identifier :id
-  fields :title, :monthly_rent_budget
+
+  fields :title, :monthly_rent_budget, :move_date
 
   view :index do
     field :top_matches do |plan|

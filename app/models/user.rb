@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   def top_matching_favorites(plan, limit: 2)
     favorite_listings.to_a.sort_by do |listing|
-      -Listings::MatchCalculator.call(listing:, plan:).result[:total_score]
+      -Listings::MatchCalculator.call(listing:, plan:).result
     end.first(limit)
   end
 end

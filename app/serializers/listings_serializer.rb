@@ -11,7 +11,7 @@ class ListingsSerializer < Blueprinter::Base
     fields :rent_price, :bedrooms, :bathrooms, :title, :image_urls, :status
 
     field :match do |listing, options|
-      Listings::MatchCalculator.call(listing:, plan: options[:plan]).result[:total_score] if options[:plan].present?
+      Listings::MatchCalculator.call(listing:, plan: options[:plan]).result if options[:plan].present?
     end
   end
 end

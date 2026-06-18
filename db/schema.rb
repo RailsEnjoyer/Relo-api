@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_17_181442) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_18_130851) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -54,6 +54,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_181442) do
     t.string "title", null: false
     t.datetime "updated_at", null: false
     t.string "url"
+    t.boolean "with_animals", default: false, null: false
     t.index ["neighborhood_id"], name: "index_listings_on_neighborhood_id"
     t.index ["url"], name: "index_listings_on_url", unique: true
   end

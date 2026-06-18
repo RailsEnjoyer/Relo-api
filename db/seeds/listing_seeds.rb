@@ -44,13 +44,15 @@ neighborhoods.each do |neighborhood|
                         apartment_images.sample(2)
                       end
 
+    is_rental = [true, false].sample
+
     listings << {
       neighborhood_id: neighborhood.id,
       url: "https://relo-fake-listing.com/#{neighborhood.id}-#{i}-#{SecureRandom.hex(4)}",
       title: "Beautiful #{prop_type < 2 ? 'Home' : 'Apartment'} in #{neighborhood.name}",
       address: "#{rand(100..9999)} #{address_array.sample}",
-      rent_price: (rand(1500..6000) * 1.0).round(2),
-      buy_price: (rand(300_000..1_500_000) * 1.0).round(2),
+      rent_price: is_rental ? (rand(1500..6000) * 1.0).round(2) : nil,
+      buy_price: is_rental ? nil : (rand(300_000..1_500_000) * 1.0).round(2),
       bedrooms: rand(1..4),
       bathrooms: bathrooms_count.sample,
       sqft: rand(500..2500),
@@ -59,7 +61,8 @@ neighborhoods.each do |neighborhood|
       rating: rand(3..5),
       amenities: amenity_options.sample(rand(2..5)),
       status: statuses.sample,
-      image_urls: selected_images
+      image_urls: selected_images,
+      with_animals: [true, false].sample
     }
   end
 end

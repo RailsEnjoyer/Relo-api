@@ -22,6 +22,7 @@
 #  status           :integer          default("available"), not null
 #  title            :string           not null
 #  url              :string
+#  with_animals     :boolean          default(FALSE), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  neighborhood_id  :bigint
