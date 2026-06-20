@@ -35,5 +35,5 @@ class City < ApplicationRecord
   has_many :neighborhoods, dependent: :destroy
   has_many :listings, through: :neighborhoods
   has_many :relocation_plans, dependent: :destroy
-  has_many :users
+  has_many :users, dependent: :nullify
 end

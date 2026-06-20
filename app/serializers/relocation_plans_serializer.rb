@@ -6,7 +6,7 @@ class RelocationPlansSerializer < Blueprinter::Base
   fields :title
 
   field :target_city do |e|
-    e.city.name
+    e&.city&.name
   end
 
   view :show do

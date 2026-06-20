@@ -6,7 +6,9 @@ class V1::SessionsController < ApplicationController
   def create
     if (user = User.authenticate_by(session_params))
       start_new_session_for(user)
-      success_response(extra: { user: user })
+
+      user = UsersSerializer.render_as_hash(current_user, view: :general)
+      success_response(extra: { user: })
     else
       error_reponse(errors: 'Invalid email or password', status: :unauthorized)
     end
