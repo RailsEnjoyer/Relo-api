@@ -30,4 +30,5 @@ class State < ApplicationRecord
   has_many :cities, dependent: :destroy
   has_many :neighborhoods, through: :cities
   has_many :listings, through: :neighborhoods
+  has_many :users
 end

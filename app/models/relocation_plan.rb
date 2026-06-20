@@ -10,6 +10,8 @@
 #  buy_budget          :decimal(10, 2)
 #  deal_breakers       :string           default([]), is an Array
 #  description         :text
+#  latitude            :float
+#  longitude           :float
 #  monthly_rent_budget :decimal(10, 2)
 #  move_date           :datetime
 #  must_haves          :string           default([]), is an Array
@@ -51,4 +53,11 @@ class RelocationPlan < ApplicationRecord
 
   validates :monthly_rent_budget, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :buy_budget, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+
+  def full_address
+    [neighborhood&.name, city&.name, state&.name].compact.join(', ')
+  end
+
+  geocoded_by :full_address
+  after_validation :geocode
 end

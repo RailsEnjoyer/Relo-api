@@ -23,6 +23,6 @@ Rails.application.routes.draw do
 
     get 'dashboard', to: 'dashboards#index'
 
-    post 'relocation_plans', to: 'relocation_plans#create'
+    resources :relocation_plans, only: %i[show create]
   end
 end

@@ -5,16 +5,20 @@ Neighborhood.destroy_all
 City.destroy_all
 State.destroy_all
 
-default_user = User.create!(email_address: 'test@example.com', password: 'password')
+default_user = User.find_or_create_by!(email_address: 'r3ka1to@gmail.com') do |u|
+  u.password = 'Password#123'
+end
 
 ca = State.create!(name: 'California', code: 'CA')
 tx = State.create!(name: 'Texas', code: 'TX')
 ny = State.create!(name: 'New York', code: 'NY')
+fl = State.create!(name: 'Florida', code: 'FL')
 
 sf = City.create!(state_id: ca.id, name: 'San Francisco')
 la = City.create!(state_id: ca.id, name: 'Los Angeles')
 austin = City.create!(state_id: tx.id, name: 'Austin')
 nyc = City.create!(state_id: ny.id, name: 'New York City')
+pensacola = City.create!(state_id: fl.id, name: 'Pensacola')
 
 sf_mission = Neighborhood.create!(
   city_id: sf.id, name: 'Mission District',
@@ -42,6 +46,13 @@ nyc_brooklyn = Neighborhood.create!(
   cost_of_living_index: 140,
   walkability_score: 160,
   crime_index: 155
+)
+pensacola_downtown = Neighborhood.create!(
+  city_id: pensacola.id,
+  name: 'Downtown Pensacola',
+  cost_of_living_index: 90,
+  walkability_score: 85,
+  crime_index: 100
 )
 
 plans = [
@@ -104,29 +115,22 @@ plans = [
     must_haves: %w[Doorman Elevator],
     deal_breakers: ['Walk-up'],
     priorities: %w[Location Safety]
+  },
+  {
+    user_id: default_user.id,
+    state_id: fl.id,
+    city_id: pensacola.id,
+    neighborhood_id: pensacola_downtown.id,
+    title: 'Pensacola Beach Life',
+    description: 'Looking to buy a place near the water in sunny Florida.',
+    monthly_rent_budget: 0,
+    buy_budget: 400_000.00,
+    people_count: 2,
+    with_animals: true,
+    must_haves: %w[Balcony Pool],
+    deal_breakers: ['No parking'],
+    priorities: %w[Amenities Budget]
   }
 ]
-
-50.times do |i|
-  city_record = [sf, la, austin, nyc].sample
-  state_record = city_record.state
-  neighborhood_record = Neighborhood.where(city: city_record).sample
-
-  plans << {
-    user_id: default_user.id,
-    state_id: state_record.id,
-    city_id: city_record.id,
-    neighborhood_id: neighborhood_record.id,
-    title: "Relocation to #{city_record.name} - Option #{i}",
-    description: "Considering a move to #{city_record.name} area.",
-    monthly_rent_budget: (rand(1500..5000) * 1.0).round(2),
-    buy_budget: 0,
-    people_count: rand(1..4),
-    with_animals: [true, false].sample,
-    must_haves: ['Parking', 'In-unit washer'].sample(rand(1..2)),
-    deal_breakers: ['Shared laundry'],
-    priorities: %w[Budget Safety]
-  }
-end
 
 RelocationPlan.create!(plans)

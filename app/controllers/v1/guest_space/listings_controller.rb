@@ -6,6 +6,6 @@ class V1::GuestSpace::ListingsController < ApplicationController
   def index
     listings = Listing.order('RANDOM()').limit(3)
 
-    render json: ListingsSerializer.render(listings, view: :guest_index)
+    render json: ListingsSerializer.render(listings)
   end
 end

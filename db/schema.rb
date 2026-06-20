@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_18_130851) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_20_135118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -44,6 +44,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_130851) do
     t.string "image_urls", default: [], array: true
     t.string "landlord_contact"
     t.datetime "last_synced_at"
+    t.float "latitude"
+    t.float "longitude"
     t.bigint "neighborhood_id"
     t.integer "property_type", default: 0, null: false
     t.integer "rating"
@@ -84,6 +86,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_130851) do
     t.datetime "created_at", null: false
     t.string "deal_breakers", default: [], array: true
     t.text "description"
+    t.float "latitude"
+    t.float "longitude"
     t.decimal "monthly_rent_budget", precision: 10, scale: 2
     t.datetime "move_date"
     t.string "must_haves", default: [], array: true
@@ -164,11 +168,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_130851) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.bigint "city_id"
     t.datetime "created_at", null: false
     t.string "email_address", null: false
     t.string "password_digest", null: false
+    t.bigint "state_id"
     t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+    t.index ["state_id"], name: "index_users_on_state_id"
   end
 
   add_foreign_key "cities", "states"
@@ -184,4 +192,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_130851) do
   add_foreign_key "user_listings", "listings"
   add_foreign_key "user_listings", "relocation_plans"
   add_foreign_key "user_listings", "users"
+  add_foreign_key "users", "cities"
+  add_foreign_key "users", "states"
 end

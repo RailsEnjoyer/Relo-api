@@ -26,4 +26,8 @@ class ApplicationController < ActionController::Base
       total_count: pagy_obj.count
     }
   end
+
+  def current_user
+    Current.session&.user
+  end
 end

@@ -9,10 +9,19 @@
 #  password_digest :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  city_id         :bigint
+#  state_id        :bigint
 #
 # Indexes
 #
+#  index_users_on_city_id        (city_id)
 #  index_users_on_email_address  (email_address) UNIQUE
+#  index_users_on_state_id       (state_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (city_id => cities.id)
+#  fk_rails_...  (state_id => states.id)
 #
 class User < ApplicationRecord
   has_secure_password
@@ -21,6 +30,9 @@ class User < ApplicationRecord
   has_many :relocation_plans, dependent: :destroy
   has_many :saved_listings, dependent: :destroy
   has_many :favorite_listings, through: :saved_listings, source: :listing
+
+  belongs_to :city, optional: true
+  belongs_to :state, optional: true
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 

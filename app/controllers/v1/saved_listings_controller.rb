@@ -2,8 +2,8 @@
 
 class V1::SavedListingsController < ApplicationController
   def index
-    pagy_obj, listings = pagy(Current.user.favorite_listings)
-    plan = Current.user.relocation_plans.find_by(id: params[:plan_id]) if params[:plan_id].present?
+    pagy_obj, listings = pagy(current_user.favorite_listings)
+    plan = current_user.relocation_plans.find_by(id: params[:plan_id]) if params[:plan_id].present?
 
     serialized_listings = ListingsSerializer.render_as_hash(listings, view: :index, plan:)
 
@@ -11,12 +11,12 @@ class V1::SavedListingsController < ApplicationController
   end
 
   def create
-    saved_listing = Current.user.saved_listings.find_or_create_by(listing_id: params[:listing_id])
+    saved_listing = current_user.saved_listings.find_or_create_by(listing_id: params[:listing_id])
     success_response(extra: { saved_listing: })
   end
 
   def destroy
-    Current.user.saved_listings.find_by(listing_id: params[:listing_id])&.destroy
+    current_user.saved_listings.find_by(listing_id: params[:listing_id])&.destroy
     success_response
   end
 end

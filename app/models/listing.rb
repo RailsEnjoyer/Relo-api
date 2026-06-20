@@ -14,6 +14,8 @@
 #  image_urls       :string           default([]), is an Array
 #  landlord_contact :string
 #  last_synced_at   :datetime
+#  latitude         :float
+#  longitude        :float
 #  property_type    :integer          default(0), not null
 #  rating           :integer
 #  raw_payload      :jsonb
@@ -42,4 +44,7 @@ class Listing < ApplicationRecord
   has_many :favorited_by, through: :saved_listings, source: :user
 
   enum :status, { available: 0, pending: 1, rented: 2, canceled: 3 }
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 end

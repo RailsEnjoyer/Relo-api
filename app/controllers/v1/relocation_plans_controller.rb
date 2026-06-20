@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
 class V1::RelocationPlansController < ApplicationController
+  def show
+    plan = current_user.relocation_plans.includes(:city).find(params[:id])
+
+    relocation_plan = RelocationPlansSerializer.render_as_hash(plan, view: :show)
+    success_response(extra: { relocation_plan: })
+  end
+
   def create
-    service = RelocationPlans::Create.call(params: relocation_plan_params, user: Current.user)
+    service = RelocationPlans::Create.call(params: relocation_plan_params, user: current_user)
     return error_reponse(errors: service.errors) if service.failure?
 
     success_response(extra: service.result)

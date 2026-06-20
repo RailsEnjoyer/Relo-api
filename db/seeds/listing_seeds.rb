@@ -34,9 +34,52 @@ apartment_images = [
   'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=800'
 ]
 
+real_locations = {
+  'San Francisco' => [
+    { address: '3500 19th St, San Francisco, CA' },
+    { address: '824 Valencia St, San Francisco, CA' },
+    { address: '2001 16th St, San Francisco, CA' },
+    { address: '1000 Valencia St, San Francisco, CA' },
+    { address: '600 S Van Ness Ave, San Francisco, CA' }
+  ],
+  'Los Angeles' => [
+    { address: '8822 Cynthia St, West Hollywood, CA' },
+    { address: '9015 Cynthia St, West Hollywood, CA' },
+    { address: '1230 Horn Ave, West Hollywood, CA' },
+    { address: '1111 N Doheny Dr, West Hollywood, CA' },
+    { address: '1000 N La Cienega Blvd, West Hollywood, CA' }
+  ],
+  'Austin' => [
+    { address: '300 W 6th St, Austin, TX' },
+    { address: '400 W 2nd St, Austin, TX' },
+    { address: '500 E 4th St, Austin, TX' },
+    { address: '100 Congress Ave, Austin, TX' },
+    { address: '600 Brazos St, Austin, TX' }
+  ],
+  'New York City' => [
+    { address: '150 N 12th St, Brooklyn, NY' },
+    { address: '200 Water St, Brooklyn, NY' },
+    { address: '100 Jay St, Brooklyn, NY' },
+    { address: '50 Bridge St, Brooklyn, NY' },
+    { address: '110 Livingston St, Brooklyn, NY' }
+  ],
+  'Pensacola' => [
+    { address: '100 E Wright St, Pensacola, FL' },
+    { address: '200 S Alcaniz St, Pensacola, FL' },
+    { address: '500 S Palafox St, Pensacola, FL' },
+    { address: '120 E Main St, Pensacola, FL' },
+    { address: '300 W Cervantes St, Pensacola, FL' }
+  ]
+}
+
 neighborhoods.each do |neighborhood|
+  city_name = neighborhood.city.name
+  locations = real_locations[city_name] || real_locations['San Francisco']
+
   rand(3..5).times do |i|
     prop_type = property_types.sample
+    location = locations.sample
+    is_rental = [true, false].sample
 
     selected_images = if prop_type < 2
                         house_images.sample(2)
@@ -44,13 +87,11 @@ neighborhoods.each do |neighborhood|
                         apartment_images.sample(2)
                       end
 
-    is_rental = [true, false].sample
-
     listings << {
       neighborhood_id: neighborhood.id,
       url: "https://relo-fake-listing.com/#{neighborhood.id}-#{i}-#{SecureRandom.hex(4)}",
       title: "Beautiful #{prop_type < 2 ? 'Home' : 'Apartment'} in #{neighborhood.name}",
-      address: "#{rand(100..9999)} #{address_array.sample}",
+      address: location[:address],
       rent_price: is_rental ? (rand(1500..6000) * 1.0).round(2) : nil,
       buy_price: is_rental ? nil : (rand(300_000..1_500_000) * 1.0).round(2),
       bedrooms: rand(1..4),
@@ -67,4 +108,8 @@ neighborhoods.each do |neighborhood|
   end
 end
 
-Listing.create!(listings)
+listings.each_with_index do |attrs, index|
+  warn "\rProcessing listing #{index + 1}/#{listings.size}..."
+  Listing.create!(attrs)
+  sleep 1.5
+end

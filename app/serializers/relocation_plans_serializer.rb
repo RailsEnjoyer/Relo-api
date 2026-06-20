@@ -3,11 +3,19 @@
 class RelocationPlansSerializer < Blueprinter::Base
   identifier :id
 
-  fields :title, :monthly_rent_budget, :move_date
+  fields :title
 
-  view :index do
+  field :target_city do |e|
+    e.city.name
+  end
+
+  view :show do
+    fields :monthly_rent_budget, :move_date
+
     field :top_matches do |plan|
-      ListingsSerializer.render_as_hash(Current.user.top_matching_favorites(plan, limit: 2), view: :index, plan:)
+      ListingsSerializer.render_as_hash(
+        Current.session.user.top_matching_favorites(plan, limit: 2), view: :index, plan:
+      )
     end
   end
 end
