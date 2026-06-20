@@ -7,22 +7,27 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
 
   namespace :v1 do
+    # Public
     namespace :guest_space do
       get 'landing_neighborhoods', to: 'neighborhoods#index'
       get 'landing_listings', to: 'listings#index'
     end
 
-    resources :users
+    # Auth & Profile
     resource :session, only: %i[create destroy]
-
+    resources :users, only: %i[create update]
     resource :profile, only: %i[show update]
 
-    get 'listings', to: 'listings#index'
+    # Core Features
+    get 'dashboard', to: 'dashboards#index'
+    resources :relocation_plans, only: %i[show create]
 
+    # Listings
+    resources :listings, only: %i[index]
     resources :saved_listings, param: :listing_id, only: %i[index create destroy]
 
-    get 'dashboard', to: 'dashboards#index'
-
-    resources :relocation_plans, only: %i[show create]
+    # Data
+    resources :states, only: %i[index]
+    resources :cities, only: %i[index]
   end
 end
