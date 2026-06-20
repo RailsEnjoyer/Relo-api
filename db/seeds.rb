@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# creates 30_000 records, should be called separately
+# require_relative 'seeds/location_seeds'
+
 require_relative 'seeds/relocation_plan_seeds'
 require_relative 'seeds/listing_seeds'
 require_relative 'seeds/neighborhood_seeds'

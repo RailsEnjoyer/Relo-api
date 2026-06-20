@@ -111,6 +111,8 @@ GEM
       xpath (~> 3.2)
     childprocess (5.1.0)
       logger (~> 1.5)
+    city-state (1.1.0)
+      rubyzip (>= 2.3)
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
     crass (1.0.6)
@@ -506,51 +508,52 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  annotaterb
-  bcrypt (~> 3.1)
-  blueprinter (~> 1.3)
-  bootsnap
-  brakeman
-  bullet
-  bundler-audit
-  capybara
-  debug
-  devise
-  factory_bot_rails
-  faker
-  faraday
-  geocoder
-  image_processing (~> 1.2)
-  importmap-rails
-  jbuilder
-  kamal
-  letter_opener_web
-  pagy (~> 43.5)
-  pg (~> 1.1)
-  pg_search
-  propshaft
-  puma (>= 5.0)
-  pundit
-  rack-cors
-  rails (~> 8.1.2)
-  redis
-  rspec-rails
-  rubocop
-  rubocop-performance
-  rubocop-rails
-  rubocop-rspec
-  selenium-webdriver
-  sidekiq
-  solid_cable
-  solid_cache
-  solid_queue
-  stimulus-rails
-  stripe
-  tailwindcss-rails
-  thruster
-  turbo-rails
+  annotaterb (= 4.22.0)
+  bcrypt (= 3.1.21)
+  blueprinter (= 1.3.0)
+  bootsnap (= 1.23.0)
+  brakeman (= 8.0.4)
+  bullet (= 8.1.0)
+  bundler-audit (= 0.9.3)
+  capybara (= 3.40.0)
+  city-state (= 1.1.0)
+  debug (= 1.11.1)
+  devise (= 5.0.2)
+  factory_bot_rails (= 6.5.1)
+  faker (= 3.6.1)
+  faraday (= 2.14.1)
+  geocoder (= 1.8.6)
+  image_processing (= 1.14.0)
+  importmap-rails (= 2.2.3)
+  jbuilder (= 2.14.1)
+  kamal (= 2.10.1)
+  letter_opener_web (= 3.0.0)
+  pagy (= 43.5.6)
+  pg (= 1.6.3)
+  pg_search (= 2.3.7)
+  propshaft (= 1.3.1)
+  puma (= 7.2.0)
+  pundit (= 2.5.2)
+  rack-cors (= 3.0.0)
+  rails (= 8.1.2)
+  redis (= 5.4.1)
+  rspec-rails (= 8.0.3)
+  rubocop (= 1.85.1)
+  rubocop-performance (= 1.26.1)
+  rubocop-rails (= 2.34.3)
+  rubocop-rspec (= 3.9.0)
+  selenium-webdriver (= 4.41.0)
+  sidekiq (= 8.1.1)
+  solid_cable (= 3.0.12)
+  solid_cache (= 1.0.10)
+  solid_queue (= 1.3.2)
+  stimulus-rails (= 1.3.4)
+  stripe (= 18.4.1)
+  tailwindcss-rails (= 4.4.0)
+  thruster (= 0.1.19)
+  turbo-rails (= 2.0.23)
   tzinfo-data
-  web-console
+  web-console (= 4.3.0)
 
 BUNDLED WITH
    2.5.22

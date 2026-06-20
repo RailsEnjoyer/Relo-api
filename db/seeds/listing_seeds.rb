@@ -56,7 +56,7 @@ real_locations = {
     { address: '100 Congress Ave, Austin, TX' },
     { address: '600 Brazos St, Austin, TX' }
   ],
-  'New York City' => [
+  'New York' => [
     { address: '150 N 12th St, Brooklyn, NY' },
     { address: '200 Water St, Brooklyn, NY' },
     { address: '100 Jay St, Brooklyn, NY' },

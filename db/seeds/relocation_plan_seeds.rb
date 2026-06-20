@@ -2,23 +2,21 @@
 
 RelocationPlan.destroy_all
 Neighborhood.destroy_all
-City.destroy_all
-State.destroy_all
 
 default_user = User.find_or_create_by!(email_address: 'r3ka1to@gmail.com') do |u|
   u.password = 'Password#123'
 end
 
-ca = State.create!(name: 'California', code: 'CA')
-tx = State.create!(name: 'Texas', code: 'TX')
-ny = State.create!(name: 'New York', code: 'NY')
-fl = State.create!(name: 'Florida', code: 'FL')
+ca = State.find_by!(code: 'CA')
+tx = State.find_by!(code: 'TX')
+ny = State.find_by!(code: 'NY')
+fl = State.find_by!(code: 'FL')
 
-sf = City.create!(state_id: ca.id, name: 'San Francisco')
-la = City.create!(state_id: ca.id, name: 'Los Angeles')
-austin = City.create!(state_id: tx.id, name: 'Austin')
-nyc = City.create!(state_id: ny.id, name: 'New York City')
-pensacola = City.create!(state_id: fl.id, name: 'Pensacola')
+sf = City.find_by!(state_id: ca.id, name: 'San Francisco')
+la = City.find_by!(state_id: ca.id, name: 'Los Angeles')
+austin = City.find_by!(state_id: tx.id, name: 'Austin')
+nyc = City.find_by!(state_id: ny.id, name: 'New York')
+pensacola = City.find_by!(state_id: fl.id, name: 'Pensacola')
 
 sf_mission = Neighborhood.create!(
   city_id: sf.id, name: 'Mission District',
