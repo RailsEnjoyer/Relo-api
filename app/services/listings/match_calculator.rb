@@ -55,21 +55,21 @@ class Listings::MatchCalculator < BaseService
 
   def match_neighborhood_level
     return MAX_LOCATION_SCORE if plan.neighborhood_id == listing.neighborhood_id
-    return MAX_LOCATION_SCORE / 2 if plan.city_id == listing.city_id
-    return MAX_LOCATION_SCORE / 5 if plan.state_id == listing.state_id
+    return MAX_LOCATION_SCORE / 2 if plan.city_id == listing.neighborhood&.city_id
+    return MAX_LOCATION_SCORE / 5 if plan.state_id == listing.neighborhood&.city&.state_id
 
     0
   end
 
   def match_city_level
-    return MAX_LOCATION_SCORE if plan.city_id == listing.city_id
-    return MAX_LOCATION_SCORE / 2 if plan.state_id == listing.state_id
+    return MAX_LOCATION_SCORE if plan.city_id == listing.neighborhood&.city_id
+    return MAX_LOCATION_SCORE / 2 if plan.state_id == listing.neighborhood&.city&.state_id
 
     0
   end
 
   def match_state_level
-    plan.state_id == listing.state_id ? MAX_LOCATION_SCORE : 0
+    plan.state_id == listing.neighborhood&.city&.state_id ? MAX_LOCATION_SCORE : 0
   end
 
   def space_score

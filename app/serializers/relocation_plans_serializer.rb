@@ -14,7 +14,7 @@ class RelocationPlansSerializer < Blueprinter::Base
 
     field :top_matches do |plan|
       ListingsSerializer.render_as_hash(
-        Current.session.user.top_matching_favorites(plan, limit: 2), view: :index, plan:
+        Current.session.user.top_matching_favorites(plan, limit: 10), view: :index, plan:
       )
     end
   end

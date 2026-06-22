@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
     # Auth & Profile
     resource :session, only: %i[create destroy]
-    resources :users, only: %i[create update]
+    resource :user, only: %i[create update]
     resource :profile, only: %i[show update]
 
     # Core Features
