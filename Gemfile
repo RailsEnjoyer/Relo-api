@@ -12,7 +12,7 @@ gem 'geocoder', '1.8.6'
 gem 'image_processing', '1.14.0'
 gem 'importmap-rails', '2.2.3'
 gem 'jbuilder', '2.14.1'
-gem 'kamal', '2.10.1', require: false
+gem 'kamal', '2.12.0', require: false
 gem 'pagy', '43.5.6'
 gem 'pg', '1.6.3'
 gem 'pg_search', '2.3.7'
