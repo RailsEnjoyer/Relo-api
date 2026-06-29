@@ -91,7 +91,7 @@ GEM
     blueprinter (1.3.0)
     bootsnap (1.23.0)
       msgpack (~> 1.2)
-    brakeman (8.0.4)
+    brakeman (8.0.5)
       racc
     builder (3.3.0)
     bullet (8.1.0)
@@ -512,7 +512,7 @@ DEPENDENCIES
   bcrypt (= 3.1.21)
   blueprinter (= 1.3.0)
   bootsnap (= 1.23.0)
-  brakeman (= 8.0.4)
+  brakeman (= 8.0.5)
   bullet (= 8.1.0)
   bundler-audit (= 0.9.3)
   capybara (= 3.40.0)
