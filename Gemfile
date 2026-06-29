@@ -16,7 +16,7 @@ gem 'kamal', '2.10.1', require: false
 gem 'pagy', '43.5.6'
 gem 'pg', '1.6.3'
 gem 'pg_search', '2.3.7'
-gem 'propshaft', '1.3.1'
+gem 'propshaft', '1.3.2'
 gem 'puma', '7.2.0'
 gem 'pundit', '2.5.2'
 gem 'rack-cors', '3.0.0'
