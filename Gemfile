@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'bcrypt', '3.1.21'
+gem 'bcrypt', '3.1.22'
 gem 'blueprinter', '1.3.0'
 gem 'bootsnap', '1.23.0', require: false
 gem 'city-state', '1.1.0'
