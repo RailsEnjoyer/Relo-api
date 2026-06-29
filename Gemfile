@@ -38,7 +38,7 @@ group :development, :test do
   gem 'bundler-audit', '0.9.3', require: false
   gem 'debug', '1.11.1', platforms: %i[mri windows], require: 'debug/prelude'
   gem 'factory_bot_rails', '6.5.1'
-  gem 'faker', '3.6.1'
+  gem 'faker', '3.8.0'
   gem 'rspec-rails', '8.0.3'
   gem 'rubocop', '1.85.1', require: false
   gem 'rubocop-performance', '1.26.1', require: false
