@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'bcrypt', '3.1.21'
 gem 'blueprinter', '1.3.0'
-gem 'bootsnap', '1.23.0', require: false
+gem 'bootsnap', '1.24.6', require: false
 gem 'city-state', '1.1.0'
 gem 'devise', '5.0.2'
 gem 'faraday', '2.14.1'
