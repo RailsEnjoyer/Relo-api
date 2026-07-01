@@ -37,10 +37,7 @@ class User < ApplicationRecord
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
   def top_matching_favorites(plan, limit: 2)
-    scope = favorite_listings
-    scope = scope.joins(:neighborhood).where(neighborhoods: { city_id: plan.city_id }) if plan.city_id.present?
-
-    scope.to_a.sort_by do |listing|
+    favorite_listings.to_a.sort_by do |listing|
       -Listings::MatchCalculator.call(listing:, plan:).result
     end.first(limit)
   end

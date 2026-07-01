@@ -16,6 +16,7 @@
 #  last_synced_at   :datetime
 #  latitude         :float
 #  longitude        :float
+#  offer_type       :integer          default(0), not null
 #  property_type    :integer          default(0), not null
 #  rating           :integer
 #  raw_payload      :jsonb
@@ -32,6 +33,7 @@
 # Indexes
 #
 #  index_listings_on_neighborhood_id  (neighborhood_id)
+#  index_listings_on_offer_type       (offer_type)
 #  index_listings_on_url              (url) UNIQUE
 #
 # Foreign Keys
@@ -43,7 +45,8 @@ class Listing < ApplicationRecord
   has_many :saved_listings, dependent: :destroy
   has_many :favorited_by, through: :saved_listings, source: :user
 
-  enum :status, { available: 0, pending: 1, rented: 2, canceled: 3 }
+  enum :status, { available: 0, pending: 1, rented: 2, deprecated: 3 }
+  enum :offer_type, { rent: 0, purchase: 1 }
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
