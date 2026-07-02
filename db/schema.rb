@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_20_135118) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_01_214921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -47,6 +47,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_20_135118) do
     t.float "latitude"
     t.float "longitude"
     t.bigint "neighborhood_id"
+    t.integer "offer_type", default: 0, null: false
     t.integer "property_type", default: 0, null: false
     t.integer "rating"
     t.jsonb "raw_payload", default: {}
@@ -58,6 +59,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_20_135118) do
     t.string "url"
     t.boolean "with_animals", default: false, null: false
     t.index ["neighborhood_id"], name: "index_listings_on_neighborhood_id"
+    t.index ["offer_type"], name: "index_listings_on_offer_type"
     t.index ["url"], name: "index_listings_on_url", unique: true
   end
 

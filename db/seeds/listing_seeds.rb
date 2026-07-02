@@ -7,6 +7,7 @@ Listing.destroy_all
 neighborhoods = Neighborhood.all
 property_types = [0, 1, 2, 3]
 statuses = [0, 1]
+offer_types = [0, 1]
 amenity_options = ['Pool', 'Gym', 'Parking', 'Washer/Dryer', 'Balcony', 'Dishwasher', 'AC']
 
 listings = []
@@ -79,7 +80,8 @@ neighborhoods.each do |neighborhood|
   rand(3..5).times do |i|
     prop_type = property_types.sample
     location = locations.sample
-    is_rental = [true, false].sample
+    offer_type = offer_types.sample
+    is_rental = offer_type.zero?
 
     selected_images = if prop_type < 2
                         house_images.sample(2)
@@ -103,7 +105,8 @@ neighborhoods.each do |neighborhood|
       amenities: amenity_options.sample(rand(2..5)),
       status: statuses.sample,
       image_urls: selected_images,
-      with_animals: [true, false].sample
+      with_animals: [true, false].sample,
+      offer_type: offer_type
     }
   end
 end
